@@ -20,10 +20,6 @@ export const Lists = ({baseUrl}: ListsProps) => {
     return (
         <>
             <div className="px-4 py-6 sm:px-0 flex flex-col">
-                <Title title={"Favorites"}/>
-                <List items={favorites?.data?.bookmarks ?? []}/>
-            </div>
-            <div className="px-4 py-6 sm:px-0 flex flex-col">
                 <Title title={"Recommended"}/>
                 <List items={recommended?.data?.restaurants ?? []}
                       actionButton={{
