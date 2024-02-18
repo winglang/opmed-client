@@ -34,12 +34,7 @@ export const List = ({items, actionButton} : ListProps) => {
                             <StarIcon className={"w-4 text-yellow-500"}/>
                         </div>
                     </div>
-                    {actionButton && (<div className="hidden sm:flex sm:flex-col sm:items-end">
-                        <p className="text-sm leading-6 text-slate-50">{actionButton.title}</p>
-                        <div className={"flex flex-row place-content-evenly w-full mt-1"} onClick={() => actionButton.onClick(item)}>
-                            {actionButton.icon}
-                        </div>
-                    </div>)}
+                   
                 </li>
             ))}
         </ul>
