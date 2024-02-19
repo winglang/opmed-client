@@ -8,14 +8,29 @@ export interface ListsProps {
 }
 export const Lists = ({baseUrl}: ListsProps) => {
 
-    const {useListRecommended} = useApi({baseUrl});
+    const {useAddFavorite, useListFavorites, useListRecommended} = useApi({baseUrl});
+    const {data: favorites} = useListFavorites();
     const {data: recommended} = useListRecommended();
+    const {mutate} = useAddFavorite();
+
+    const onBookmarkClick = (item: ListItem) => {
+        mutate(item);
+    }
 
     return (
         <>
             <div className="px-4 py-6 sm:px-0 flex flex-col">
+                <Title title={"Favorites"}/>
+                <List items={favorites?.data?.bookmarks ?? []}/>
+            </div>
+            <div className="px-4 py-6 sm:px-0 flex flex-col">
                 <Title title={"Recommended"}/>
-                <List items={recommended?.data?.restaurants ?? []}/>
+                <List items={recommended?.data?.restaurants ?? []}
+                      actionButton={{
+                          icon: <BookmarkIcon className={"text-slate-50 w-4 hover:text-sky-600 cursor-pointer"}/>,
+                          title: "Add to favorite",
+                          onClick: onBookmarkClick
+                      }}/>
             </div>
         </>
     )
